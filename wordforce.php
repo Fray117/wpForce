@@ -3,7 +3,7 @@
  * wpForce
  *
  * @author Fray117
- * @package wpForce
+ * @package WordForce
  * @version 0.4.1
  */
 
@@ -14,7 +14,7 @@
 //   \_/\_/ | .__/|_|  \___/|_|  \___\___|
 //          |_|                           
 
-class wpforce {
+class wordforce {
 	
 	function save(string $url, string $username, string $password, string $filename = 'cookie.txt') {
 		// Open Connection

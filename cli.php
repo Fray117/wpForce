@@ -1,13 +1,13 @@
 <?php
 /**
- * wpForce CLI
+ * WordForce CLI
  *
  * @author Fray117
  * @version 0.3.4
  */
 
-include 'wpforce.php';
-$wpforce = new wpforce();
+include 'wordforce.php';
+$wf = new wordforce();
 
 // Required value
 $shortopts  = "l:u:w:";
@@ -46,7 +46,7 @@ switch ($opt) {
 			$wordlist = file($opts['w']);
 
 			foreach ($wordlist as $key => $password) {
-				$cracking = $wpforce->validate($url, $username, $password);
+				$cracking = $wf->validate($url, $username, $password);
 
 				if ($cracking) {
 					print 'Cracked using ' . $password . PHP_EOL;
@@ -79,12 +79,11 @@ switch ($opt) {
 		break;
 	
 	default:
-		print '                 _____                   ' . PHP_EOL;
-		print ' __      ___ __ |  ___|__  _ __ ___ ___  ' . PHP_EOL;
-		print ' \ \ /\ / / \'_ \| |_ / _ \| \'__/ __/ _ \ ' . PHP_EOL;
-		print '  \ V  V /| |_) |  _| (_) | | | (_|  __/ ' . PHP_EOL;
-		print '   \_/\_/ | .__/|_|  \___/|_|  \___\___| ' . PHP_EOL;
-		print '          |_|                            ' . PHP_EOL;
+		print ' __        __            _ _____                  ' . PHP_EOL;
+		print ' \ \      / /__  _ __ __| |  ___|__  _ __ ___ ___ ' . PHP_EOL;
+		print '  \ \ /\ / / _ \| \'__/ _` | |_ / _ \| \'__/ __/ _ ' . PHP_EOL;
+		print '   \ V  V / (_) | | | (_| |  _| (_) | | | (_|  __/' . PHP_EOL;
+		print '    \_/\_/ \___/|_|  \__,_|_|  \___/|_|  \___\___|' . PHP_EOL;
 		print PHP_EOL;
 		print 'Usage: ' . basename(__FILE__) . ' <options> [-a <User Agent>]' . PHP_EOL;
 		print '   ' . basename(__FILE__) . ' <options> [--agent <User Agent>]' . PHP_EOL;
