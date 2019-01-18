@@ -3,7 +3,7 @@
  * WordForce CLI
  *
  * @author Fray117
- * @version 0.3.9
+ * @version 0.3.10
  */
 
 include 'wordforce.php';
@@ -50,7 +50,7 @@ switch ($opt) {
 					$data = json_decode(file_get_contents('cracked.json'));
 					if (isset($data[$url])) {
 
-						if ($wpforce->validate($url, $data[$url]['username'], $data[$url]['password']);) {
+						if ($wpforce->validate($url, $data[$url]['username'], $data[$url]['password'])) {
 							print '- Already Cracked -' . PHP_EOL;
 							print 'Username: ' . $data[$url]['username'] . PHP_EOL;
 							print 'Password: ' . $data[$url]['password'] . PHP_EOL;
@@ -59,6 +59,7 @@ switch ($opt) {
 					}
 				}
 
+				sleep(0.3);
 				$cracking = $wf->validate($url, $username, $password);
 
 				if ($cracking) {
@@ -94,7 +95,7 @@ switch ($opt) {
 					$data = json_decode(file_get_contents('cracked.json'));
 					if (isset($data[$url])) {
 
-						if ($wpforce->validate($url, $data[$url]['username'], $data[$url]['password']);) {
+						if ($wpforce->validate($url, $data[$url]['username'], $data[$url]['password'])) {
 							print '- Already Cracked -' . PHP_EOL;
 							print 'Username: ' . $data[$url]['username'] . PHP_EOL;
 							print 'Password: ' . $data[$url]['password'] . PHP_EOL;
@@ -103,6 +104,7 @@ switch ($opt) {
 					}
 				}
 
+				sleep(0.3);
 				$cracking = $wpforce->validate($url, $username, $password);
 
 				if ($cracking) {
