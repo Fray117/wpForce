@@ -105,7 +105,7 @@ switch ($opt) {
 				}
 
 				sleep(0.3);
-				$cracking = $wpforce->validate($url, $username, $password);
+				$cracking = $wf->validate($url, $username, $password);
 
 				if ($cracking) {
 					print '[' . $key  . '] Cracked using ' . $password . PHP_EOL;
