@@ -22,14 +22,11 @@ class wordforce {
 		
 		// Setting up Connection
 		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, 'log=' . $username . '&pwd=' . $password);
-
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
 		// Setting up Cookie Jar
-		curl_setopt($ch, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/' . $filename); 
-		curl_setopt($ch, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/' . $filename);
-		
+		curl_setopt($ch, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/' . $filename);
+				
 		// Make Request
 		$result = curl_exec($ch);
 		
@@ -56,7 +53,8 @@ class wordforce {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, 'log=' . $username . '&pwd=' . $password);
 		curl_setopt($ch, CURLOPT_USERAGENT, $agent);
-		
+		curl_setopt($ch, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/' . $filename);
+
 		// Make Request
 		$result = curl_exec($ch);
 		
